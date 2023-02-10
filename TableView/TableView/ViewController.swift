@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDataSource {
 //    @IBOutlet var pushBtn:UIButton!
     @IBOutlet weak var tableView: UITableView!
     let cellIdentifier: String = "cell"
