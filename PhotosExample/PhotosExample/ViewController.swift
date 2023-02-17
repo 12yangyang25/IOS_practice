@@ -9,6 +9,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     let imageManager: PHCachingImageManager = PHCachingImageManager()
     let cellIdentifier: String = "cell"
     
+    @IBAction func touchupRefreshBtn(_ sender: UIBarButtonItem){
+        self.tableView.reloadSections(IndexSet(0...0), with: .automatic)
+    }
+    
     func requestCollection() {
         let cameraRoll: PHFetchResult<PHAssetCollection> = PHAssetCollection.fetchAssetCollections(with: .smartAlbum, subtype: .smartAlbumUserLibrary, options: nil)
         
@@ -24,7 +28,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }()
         
         fetchResult = PHAsset.fetchAssets(in: cameraRollCollection, options: fetchOptions)
-        
     }
     
     
@@ -70,7 +73,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         let asset: PHAsset = fetchResult.object(at: indexPath.row)
         
-        imageManager.requestImage(for: asset, targetSize: CGSize(width: 30, height: 30), contentMode: .aspectFill, options: nil) { image, _ in cell.imageView?.image = image
+        imageManager.requestImage(for: asset, targetSize: CGSize(width: 30, height: 30), contentMode: .aspectFill, options: nil)
+        { image, _ in cell.imageView?.image = image
         }
         
         return cell
@@ -89,18 +93,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                                                    , completionHandler: nil)
         }
     }
-        
+    
+    
+    
     func photoLibraryDidChange(_ changeInstance: PHChange) {
         guard let changes = changeInstance.changeDetails(for: fetchResult) else{
             return
         }
-        
+
         fetchResult = changes.fetchResultAfterChanges
         OperationQueue.main.addOperation {
             self.tableView.reloadSections(IndexSet(0...0), with: .automatic)
         }
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let nextViewController: ImagezoomViewController = segue.destination as? ImagezoomViewController else {
             return

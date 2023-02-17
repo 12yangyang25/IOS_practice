@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QuP-lE-lkN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QuP-lE-lkN">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--사진들-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="PhotosExample" customModuleProvider="target" sceneMemberID="viewController">
@@ -17,11 +18,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="6Vh-cQ-2YC">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="92" width="414" height="721"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="qQd-Cn-5we">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="50" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qQd-Cn-5we" id="bjX-iG-cLa">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -47,7 +48,17 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="6Vh-cQ-2YC" secondAttribute="bottom" id="wES-aX-fKe"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="pxJ-Dg-UEa"/>
+                    <toolbarItems>
+                        <barButtonItem title="Item" id="ZxP-e9-wef"/>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" title="사진들" id="9fJ-6e-eCW">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="nZn-r6-8YZ">
+                            <connections>
+                                <action selector="touchupRefreshBtn:" destination="BYZ-38-t0r" id="0Vd-ga-wNJ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="6Vh-cQ-2YC" id="7DG-gf-4xS"/>
                     </connections>
@@ -68,7 +79,7 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kSh-LK-pc2">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
+                                        <rect key="frame" x="0.0" y="-4" width="414" height="721"/>
                                     </imageView>
                                 </subviews>
                                 <constraints>
@@ -93,7 +104,11 @@
                             <constraint firstItem="bRF-ZY-FIL" firstAttribute="bottom" secondItem="BRP-hw-Ign" secondAttribute="bottom" id="wCA-Q3-FkK"/>
                         </constraints>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem systemItem="refresh" id="W7e-ad-5G8"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" id="s1J-UQ-M4m"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="imageView" destination="kSh-LK-pc2" id="Q2l-r0-KGV"/>
                     </connections>
@@ -105,13 +120,17 @@
         <!--Navigation Controller-->
         <scene sceneID="inU-Wm-b2Z">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="QuP-lE-lkN" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="QuP-lE-lkN" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="YT0-up-eqr">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="48" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="fSJ-sl-lqY">
+                        <rect key="frame" x="0.0" y="813" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Mm6-2v-JFL"/>
                     </connections>
